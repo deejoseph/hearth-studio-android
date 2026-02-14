@@ -1,12 +1,16 @@
 package com.dee.android.feature_home.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import com.dee.android.core.network.NetworkResult
 import com.dee.android.feature_home.R
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.launch
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,28 +25,78 @@ private const val ARG_PARAM2 = "param2"
  */
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        observe()
+        observeUiState()
+
         viewModel.loadData()
     }
 
+
     private fun observe() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.uiState.collect {
-                when (it) {
-                    is NetworkResult.Success -> {
-                        println(it.data)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect {
+                    when (it) {
+
+                        is NetworkResult.Loading -> {
+                            println("Loading...")
+                        }
+
+                        is NetworkResult.Success -> {
+                            println(it.data)
+                        }
+
+                        is NetworkResult.Error -> {
+                            println(it.message)
+                        }
                     }
-                    is NetworkResult.Error -> {
-                        println(it.message)
-                    }
-                    null -> {}
                 }
             }
         }
     }
+
+
+    private fun observeUiState() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { result ->
+                    when (result) {
+                        is NetworkResult.Loading -> {
+                            showLoading()
+                        }
+
+                        is NetworkResult.Success -> {
+                            showContent(result.data)
+                        }
+
+                        is NetworkResult.Error -> {
+                            showError(result.message)
+                        }
+
+                        null -> {
+                            // 初始状态
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun showLoading() {
+        Log.d("HomeFragment", "Loading...")
+    }
+
+    private fun showContent(data: String?) {
+        Log.d("HomeFragment", "Success: $data")
+    }
+
+    private fun showError(message: String?) {
+        Log.e("HomeFragment", "Error: $message")
+    }
+
+
 }

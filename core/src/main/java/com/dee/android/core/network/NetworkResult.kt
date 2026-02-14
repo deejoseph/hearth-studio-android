@@ -1,9 +1,11 @@
 package com.dee.android.core.network
 
-sealed class NetworkResult<T> {
+sealed class NetworkResult<out T> {
+
+    object Loading : NetworkResult<Nothing>()
 
     data class Success<T>(val data: T) : NetworkResult<T>()
 
-    data class Error<T>(val message: String) : NetworkResult<T>()
-
+    data class Error(val message: String) : NetworkResult<Nothing>()
 }
+
