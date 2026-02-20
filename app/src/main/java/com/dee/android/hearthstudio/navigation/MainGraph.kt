@@ -9,7 +9,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.navigation
 import com.dee.android.feature_home.HomeDestination
 import com.dee.android.feature_home.homeScreen
-import com.dee.android.feature_order.orderScreen
+import com.dee.android.feature_order.navigation.orderScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController

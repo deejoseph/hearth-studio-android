@@ -1,9 +1,9 @@
-package com.dee.android.feature_order
+package com.dee.android.feature_order.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.dee.android.feature_order.ui.OrderScreen
+import com.dee.android.feature_order.presentation.OrderScreen
 
 object OrderDestination {
     const val route = "order"
