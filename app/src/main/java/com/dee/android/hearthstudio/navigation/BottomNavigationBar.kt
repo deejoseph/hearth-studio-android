@@ -27,8 +27,17 @@ fun BottomNavigationBar(
                 selected = currentRoute == route,
                 onClick = {
                     navController.navigate(route) {
-                        popUpTo(navController.graph.startDestinationId)
+
+                        // 避免重复创建
                         launchSingleTop = true
+
+                        // 恢复之前状态
+                        restoreState = true
+
+                        // 只弹到 startDestination
+                        popUpTo(navController.graph.startDestinationId) {
+                            saveState = true
+                        }
                     }
                 },
                 label = { Text(label) },

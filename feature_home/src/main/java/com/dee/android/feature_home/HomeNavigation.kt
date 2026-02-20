@@ -3,10 +3,11 @@ package com.dee.android.feature_home
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.dee.android.core.navigation.AppRoute
 import com.dee.android.feature_home.ui.HomeScreen
 
-object HomeDestination {
-    const val route = "home"
+object HomeDestination : AppRoute {
+    override val route = "home"
 }
 
 fun NavGraphBuilder.homeScreen() {
