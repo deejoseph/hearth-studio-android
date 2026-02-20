@@ -9,6 +9,6 @@ fun HomeRoute() {
 }
 
 @Composable
-fun HomeScreen() {
+internal fun HomeScreen() {
     Text(text = "Home Screen")
 }

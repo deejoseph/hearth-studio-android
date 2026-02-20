@@ -15,6 +15,8 @@ import com.dee.android.hearthstudio.ui.theme.HearthStudioTheme
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.dee.android.feature_home.HomeDestination
+import com.dee.android.feature_home.homeScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,13 +28,9 @@ class MainActivity : ComponentActivity() {
 
                 NavHost(
                     navController = navController,
-                    startDestination = "home"
+                    startDestination = HomeDestination.route
                 ) {
-
-                    composable("home") {
-                        Text("Home Screen")
-                    }
-
+                    homeScreen()
                 }
             }
         }
