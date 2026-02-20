@@ -59,5 +59,6 @@ dependencies {
     implementation(project(":feature_collection"))
     implementation(project(":feature_artisan"))
     implementation(project(":feature_about"))
+    implementation(project(":feature_order"))
     implementation("androidx.navigation:navigation-compose:2.7.7")
 }

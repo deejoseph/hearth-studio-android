@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dee.android.feature_home.HomeDestination
 import com.dee.android.feature_home.homeScreen
+import com.dee.android.feature_order.orderScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +32,7 @@ class MainActivity : ComponentActivity() {
                     startDestination = HomeDestination.route
                 ) {
                     homeScreen()
+                    orderScreen()
                 }
             }
         }

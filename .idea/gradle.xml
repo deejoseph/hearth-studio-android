@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/feature_collection" />
             <option value="$PROJECT_DIR$/feature_custom" />
             <option value="$PROJECT_DIR$/feature_home" />
+            <option value="$PROJECT_DIR$/feature_order" />
           </set>
         </option>
       </GradleProjectSettings>
